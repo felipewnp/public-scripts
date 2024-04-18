@@ -5,6 +5,14 @@ set -eo pipefail
 SWAP_PATH=/swapfile
 SWAP_SIZE=2G
 
+while getopts :p:s: flag
+do
+    case "${flag}" in
+        p) SWAP_PATH=${OPTARG};;
+        s) SWAP_SIZE=${OPTARG};;
+    esac
+done
+
 printf "\nCreating ${SWAP_PATH} file with sixe of ${SWAP_SIZE}\n\n"
 fallocate -l ${SWAP_SIZE} ${SWAP_PATH}
 
