@@ -42,10 +42,10 @@ printf "\n\n\nDumping ${db_name} From ${host_from} To ${file}\n"
 /usr/bin/mysqldump -u ${admin_user_host_from} --password=${admin_pass_host_from} --skip-lock-tables --routines --add-drop-table --disable-keys --extended-insert --set-gtid-purged=OFF --host=${host_from} --port=3306 ${db_name} >${file} || exit 1
 
 printf "\n\n\nInitializing ${db_name} inside ${host_to}\n"
-/usr/bin/mysqldump -u ${admin_user_host_to} --password=${admin_pass_host_to} --host=${host_to} --port=3306 --execute="CREATE DATABASE IF NOT EXISTS \`${db_name}\`;" || exit 1
+/usr/bin/mysql -u ${admin_user_host_to} --password=${admin_pass_host_to} --host=${host_to} --port=3306 --execute="CREATE DATABASE IF NOT EXISTS \`${db_name}\`;" || exit 1
 
 printf "\n\n\nRestoring ${db_name} From ${file} To ${host_to}\n"
-/usr/bin/mysqldump -u ${admin_user_host_to} --password=${admin_pass_host_to} --host=${host_to} --port=3306 ${db_name} <${file} || exit 1
+/usr/bin/mysql -u ${admin_user_host_to} --password=${admin_pass_host_to} --host=${host_to} --port=3306 ${db_name} <${file} || exit 1
 
 if [ ${create_user} == "true" ]; then
 	printf "\n\n\nCreating user ${db_user} in ${host_to}...\n"
