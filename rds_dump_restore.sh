@@ -23,11 +23,11 @@ db_pass="my-secret-password"
 ##
 #
 
-if [ ${admin_pass_host_from} == "" ]; then
+if [ -z "${admin_pass_host_from}" ]; then
 	read -s -p "Enter host_from password: " admin_pass_host_from
 fi
 
-if [ ${admin_pass_host_to} == "" ]; then
+if [ -z "${admin_pass_host_to}" ]; then
 	read -s -p "Enter host_to password: " admin_pass_host_to
 fi
 
