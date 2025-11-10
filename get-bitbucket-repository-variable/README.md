@@ -20,7 +20,7 @@ A Bash script to scan all repositories in a Bitbucket workspace and find reposit
 
 1. **Download the script:**
    ```bash
-   wget https://raw.githubusercontent.com/felipewnp/public-scripts/main/get-bitbucket-variable/get-bitbucket-variable.sh
+   wget https://raw.githubusercontent.com/felipewnp/public-scripts/refs/heads/main/get-bitbucket-repository-variable/get-bitbucket-variable.sh
    chmod +x get-bitbucket-variable.sh
    ```
 
