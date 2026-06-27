@@ -94,7 +94,8 @@ def main():
 
     # Handle TLS/Secure Layer
     if args.secure:
-        cert_path = os.path.expanduser("~/.serve_files_cert.pem")
+        # Mudança aqui: Salvando na pasta /tmp para ficar fora do root do servidor web
+        cert_path = "/tmp/.serve_files_cert.pem"
         if not os.path.exists(cert_path):
             print(f"Generating temporary self-signed TLS cert at {cert_path}...")
             subprocess.run([
@@ -109,10 +110,11 @@ def main():
 
     # Handle Authentication
     if args.user and args.password:
-        htpasswd_path = os.path.expanduser("~/.serve_files_htpasswd")
-        generate_htpasswd(args.user, args.password, htpasswd_path)
-        cmd.extend(["--http-auth", htpasswd_path])
-        print(f"🔒 Authentication enabled! Credentials -> User: {args.user}")
+        # A flag correta do uploadserver aceita o formato usuario:senha diretamente
+        cmd.extend(["--basic-auth", f"{args.user}:{args.password}"])
+        print("🔒 Authentication enabled! Credentials:")
+        print(f"   User: {args.user}")
+        print(f"   Pass: {args.password}")
 
     print(f"\n🚀 Server booting up at {protocol}://{bind_ip}:{args.port}")
     print(f"   Upload directory available at {protocol}://{bind_ip}:{args.port}/upload")
