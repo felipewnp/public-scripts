@@ -21,10 +21,8 @@ This project was built as an offline-first alternative to tools like **croc** or
 Deploy `serve_files` as a global system binary by running the remote installer script:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/yourusername/yourrepo/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/felipewnp/public-scripts/refs/heads/serve_files/install.sh | bash
 ```
-
-> **Note**: Replace the URL above with the actual raw URL to your installer script.
 
 ---
 
@@ -68,13 +66,13 @@ serve_files --ip=127.0.0.1 --port=8080
 
 ## Interaction from Remote Clients
 
-Once your server is up and running (e.g., at `https://172.31.136.26:9999`), devices on the other routed subnet can interact with it instantly using standard networking tools.
+Once your server is up and running (e.g., at `https://192.168.1.100:9999`), devices on the other routed subnet can interact with it instantly using standard networking tools.
 
 ### Via Web Browser
 
 Open your browser and navigate to:
-- **To Browse/Download**: `https://172.31.136.26:9999`
-- **To Upload Files**: `https://172.31.136.26:9999/upload`
+- **To Browse/Download**: `https://192.168.1.100:9999`
+- **To Upload Files**: `https://192.168.1.100:9999/upload`
 
 *Note: Since the server utilizes an internal self-signed TLS certificate, browsers will display a privacy warning. Click **Advanced** and select **Proceed** to access the interface.*
 
@@ -82,12 +80,12 @@ Open your browser and navigate to:
 
 #### Download a file securely:
 ```bash
-curl -k -u "admin:secret123" -O https://172.31.136.26:9999/target_file.zip
+curl -k -u "admin:secret123" -O https://192.168.1.100:9999/target_file.zip
 ```
 
 #### Upload a file securely:
 ```bash
-curl -k -u "admin:secret123" -X POST https://172.31.136.26:9999/upload -F "files=@my_local_document.pdf"
+curl -k -u "admin:secret123" -X POST https://192.168.1.100:9999/upload -F "files=@my_local_document.pdf"
 ```
 
 *(The `-k` or `--insecure` flag instructs curl to trust the self-signed certificate connection).*
@@ -186,7 +184,7 @@ rm -f /tmp/.serve_files_cert.pem
 
 ## Contributing
 
-Contributions are welcome! Please submit issues and pull requests on the [GitHub repository](https://github.com/yourusername/yourrepo).
+Contributions are welcome! Please submit issues and pull requests on the [GitHub repository](https://github.com/felipewnp/public-scripts).
 
 ### Development Setup
 
@@ -203,7 +201,7 @@ Contributions are welcome! Please submit issues and pull requests on the [GitHub
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **GNU Affero General Public License v3.0** - see the [LICENSE](https://github.com/felipewnp/public-scripts/blob/main/LICENSE) file for details.
 
 ---
 
@@ -217,9 +215,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-For questions, issues, or feature requests:
-- Open an issue on [GitHub Issues](https://github.com/yourusername/yourrepo/issues)
-- Contact the maintainers via [email](mailto:maintainer@example.com)
+For questions, issues, or feature requests, please open an issue on [GitHub Issues](https://github.com/felipewnp/public-scripts/issues).
 
 ---
 
